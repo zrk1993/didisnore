@@ -39,6 +39,7 @@
     "vue-router": "^4.1.6",
     "vxe-table": "^4.3.8",
     "vxe-table-plugin-element": "^3.0.6",
+    "wavesurfer.js": "^6.4.0",
     "xe-utils": "^3.5.7"
   },
   "devDependencies": {
@@ -47,6 +48,7 @@
     "@types/node": "^18.11.18",
     "@types/nprogress": "^0.2.0",
     "@types/path-browserify": "^1.0.0",
+    "@types/wavesurfer.js": "^6.0.3",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
     "@vitejs/plugin-vue": "^4.0.0",

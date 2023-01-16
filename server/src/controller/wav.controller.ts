@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import deccoder from '../utils/wav-deccoder';
 import { floatTo16Bit } from '../utils/tool';
+import send from 'koa-send'
 
 @Controller('/wav')
 export default class Wav {
@@ -20,5 +21,10 @@ export default class Wav {
       });
     })
     return b
+  }
+
+  @Get('/raw')
+  async raw(@Ctx() ctx: Context, @Query() query: any) {
+    await send(ctx, 'wav/40dB_gain.wav')
   }
 }

@@ -8,3 +8,7 @@ declare module "*.scss" {
   const scss: Record<string, string>
   export default scss
 }
+
+declare module "wavesurfer.js/dist/plugin/wavesurfer.timeline"
+declare module "wavesurfer.js/dist/plugin/wavesurfer.cursor"
+declare module "wavesurfer.js/dist/plugin/wavesurfer.markers"
