@@ -28,7 +28,7 @@
               show-password
             />
           </el-form-item>
-          <el-form-item prop="code">
+          <!-- <el-form-item prop="code">
             <el-input
               v-model.trim="loginForm.code"
               placeholder="验证码"
@@ -49,7 +49,7 @@
                 </el-image>
               </template>
             </el-input>
-          </el-form-item>
+          </el-form-item> -->
           <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin"> 登 录 </el-button>
         </el-form>
       </div>
@@ -64,6 +64,7 @@ import { useUserStore } from "@/store/modules/user"
 import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import { FormInstance, FormRules } from "element-plus"
+import { ElMessage } from "element-plus"
 import { ILoginData, getLoginCodeApi } from "@/api/login"
 
 const router = useRouter()
@@ -86,7 +87,7 @@ const loginFormRules: FormRules = {
     { required: true, message: "请输入密码", trigger: "blur" },
     { min: 8, max: 16, message: "长度在 8 到 16 个字符", trigger: "blur" }
   ],
-  code: [{ required: true, message: "请输入验证码", trigger: "blur" }]
+  // code: [{ required: true, message: "请输入验证码", trigger: "blur" }]
 }
 /** 登录逻辑 */
 const handleLogin = () => {
@@ -96,14 +97,14 @@ const handleLogin = () => {
       useUserStore()
         .login({
           username: loginForm.username,
-          password: loginForm.password,
-          code: loginForm.code
+          password: loginForm.password
+          // code: loginForm.code
         })
         .then(() => {
           router.push({ path: "/" })
         })
         .catch(() => {
-          createCode()
+          // createCode()
           loginForm.password = ""
         })
         .finally(() => {
@@ -115,18 +116,18 @@ const handleLogin = () => {
   })
 }
 /** 创建验证码 */
-const createCode = () => {
-  // 先清空验证码的输入
-  loginForm.code = ""
-  // 获取验证码
-  codeUrl.value = ""
-  getLoginCodeApi().then((res: any) => {
-    codeUrl.value = res.data
-  })
-}
+// const createCode = () => {
+//   // 先清空验证码的输入
+//   // loginForm.code = ""
+//   // 获取验证码
+//   codeUrl.value = ""
+//   getLoginCodeApi().then((res: any) => {
+//     codeUrl.value = res.data
+//   })
+// }
 
-/** 初始化验证码 */
-createCode()
+// /** 初始化验证码 */
+// createCode()
 </script>
 
 <style lang="scss" scoped>

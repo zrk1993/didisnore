@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onUnmounted } from "vue"
+import { ref, onMounted, onUnmounted } from "vue"
 import { ElMessage } from "element-plus"
 import screenfull from "screenfull"
 
@@ -38,7 +38,11 @@ const change = () => {
   tips.value = screenfull.isFullscreen ? props.exitTips : props.openTips
 }
 
-screenfull.on("change", change)
+onMounted(() => {
+  if (screenfull.isEnabled) {
+    screenfull.on("change", change)
+  }
+})
 
 onUnmounted(() => {
   if (screenfull.isEnabled) {

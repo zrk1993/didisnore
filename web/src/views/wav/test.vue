@@ -59,7 +59,7 @@ onMounted(() => {
     wavesurfer.playPause();
     wavesurfer.setMute(true);
   })
-  wavesurfer.load("/api/wav/raw")
+  wavesurfer.load("/api/wav/raw?id=40dB_gain(left_ear)_vs_60dB_gain(right_ear)")
 })
 </script>
 

@@ -25,6 +25,6 @@ export default class Wav {
 
   @Get('/raw')
   async raw(@Ctx() ctx: Context, @Query() query: any) {
-    await send(ctx, 'wav/40dB_gain.wav')
+    await send(ctx, `wav/${query.id}.wav`)
   }
 }

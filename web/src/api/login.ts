@@ -6,7 +6,7 @@ export interface ILoginData {
   /** 密码 */
   password: string
   /** 验证码 */
-  code: string
+  // code: string
 }
 
 /** 获取登录验证码 */
@@ -19,7 +19,7 @@ export function getLoginCodeApi() {
 /** 登录并返回 Token */
 export function loginApi(data: ILoginData) {
   return request({
-    url: "users/login",
+    url: "user/login",
     method: "post",
     data
   })
@@ -27,7 +27,7 @@ export function loginApi(data: ILoginData) {
 /** 获取用户详情 */
 export function getUserInfoApi() {
   return request({
-    url: "users/info",
+    url: "user/info",
     method: "get"
   })
 }

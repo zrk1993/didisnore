@@ -3,6 +3,7 @@ import path, { resolve } from "path"
 import vue from "@vitejs/plugin-vue"
 import vueJsx from "@vitejs/plugin-vue-jsx"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
+import { visualizer } from "rollup-plugin-visualizer"
 import svgLoader from "vite-svg-loader"
 
 /** 配置项文档：https://cn.vitejs.dev/config */
@@ -60,7 +61,23 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
         }
       },
       /** 打包后静态资源目录 */
-      assetsDir: "static"
+      assetsDir: "static",
+      rollupOptions: {
+        output: {
+          // manualChunks: (id, meta) => {
+          //   const str = id.slice(id.lastIndexOf('node_modules'))
+          //   const arr = str.split(/[/\\]/gi)
+          //   return arr[1]
+          // }
+          manualChunks: {
+            vue: ["vue", "vue-router", "pinia"],
+            elementPlus: ['element-plus'],
+            wavesurfer: ["wavesurfer.js"],
+            lodash: ["lodash-es"],
+            vender: ["axios", "dayjs", "js-cookie", "xe-utils", "screenfull", "path-to-regexp", "path-browserify", "nprogress"],
+          },
+        },
+      },
     },
     /** Vite 插件 */
     plugins: [
@@ -72,6 +89,10 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), "src/icons/svg")],
         symbolId: "icon-[dir]-[name]"
+      }),
+      visualizer({
+        open: true, //注意这里要设置为true，否则无效
+        gzipSize: true,
       }),
     ]
   }
