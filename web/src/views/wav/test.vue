@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container center">
+  <div class="app-container">
     <div id="waveform" style="width: 100%" />
     <div id="wave-timeline" />
   </div>
@@ -57,9 +57,9 @@ onMounted(() => {
   })
   wavesurfer.once("ready", function () {
     wavesurfer.playPause();
-    wavesurfer.setMute(true);
+    wavesurfer.setMute(false);
   })
-  wavesurfer.load("/api/wav/raw?id=40dB_gain(left_ear)_vs_60dB_gain(right_ear)")
+  wavesurfer.load("/api/wav/raw?id=test2")
 })
 </script>
 

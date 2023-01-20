@@ -10,9 +10,14 @@ export function floatTo16Bit(inputArray: [any]) {
 export function int16ToFloat32(inputArray: [any]) {
   const output = new Float32Array(2048);
   for (var i = 0; i < 2048; i++) {
-    const int = inputArray[i];
-    const float = (int >= 0x8000) ? -(0x10000 - int) / 0x8000 : int / 0x7FFF;
-    output[i] = float;
+    const s = inputArray[i];
+    const f = (s >= 0x8000) ? -(0x10000 - s) / 0x8000 : s / 0x7FFF;
+    output[i] = f;
   }
   return output;
+}
+
+export function average(arr: [number]) {
+  const sum = arr.reduce((p, i) => p + i, 0)
+  return sum / arr.length
 }

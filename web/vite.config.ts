@@ -91,7 +91,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
         symbolId: "icon-[dir]-[name]"
       }),
       visualizer({
-        open: true, //注意这里要设置为true，否则无效
+        open: false, //注意这里要设置为true，否则无效
         gzipSize: true,
       }),
     ]

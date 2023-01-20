@@ -2,7 +2,8 @@ import { joi, Use, Context, createParamDecorator, Controller, Description, Get, 
 import fs from 'fs';
 import path from 'path';
 import deccoder from '../utils/wav-deccoder';
-import { floatTo16Bit } from '../utils/tool';
+import encoder from '../utils/wav-encoder';
+import { floatTo16Bit, int16ToFloat32, average } from '../utils/tool';
 import send from 'koa-send'
 
 @Controller('/wav')
@@ -26,5 +27,31 @@ export default class Wav {
   @Get('/raw')
   async raw(@Ctx() ctx: Context, @Query() query: any) {
     await send(ctx, `wav/${query.id}.wav`)
+  }
+
+  @Get('/raw2')
+  async raw2(@Ctx() ctx: Context, @Query() query: any) {
+    const b = await new Promise((resolve, reject) => {
+      // 波形居中
+      fs.readFile(path.join(__dirname, '../..', `wav/${query.id}.wav`), (err, data) => {
+        if (err) {
+          reject(err)
+        };
+        deccoder(data, {}).then((audioData: any) => {
+          const bias = 0 - average(audioData.channelData[0].slice(0, Math.min(16000, audioData.channelData[0].length)))
+          const whiteNoise1sec = {
+            sampleRate: 16000,
+            channelData: [
+              audioData.channelData[0].map((v: number) => v + bias)
+            ]
+          };
+          encoder(whiteNoise1sec, {}).then((buffer: any) => {
+            fs.writeFileSync(`wav/${query.id}2.wav`, Buffer.from(buffer));
+            resolve({ code: 0, data: [] });
+          });
+        })
+      });
+    })
+    return b
   }
 }

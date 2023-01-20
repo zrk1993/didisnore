@@ -9,6 +9,9 @@ declare module "*.scss" {
   export default scss
 }
 
+declare module "msr"
+
 declare module "wavesurfer.js/dist/plugin/wavesurfer.timeline"
 declare module "wavesurfer.js/dist/plugin/wavesurfer.cursor"
 declare module "wavesurfer.js/dist/plugin/wavesurfer.markers"
+declare module "wavesurfer.js/dist/plugin/wavesurfer.microphone"
