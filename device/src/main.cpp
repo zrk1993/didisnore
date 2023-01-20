@@ -1,9 +1,32 @@
 #include <Arduino.h>
+#include <WiFi.h>
 #include <SPI.h>
 #include <SD.h>
 #include <WAVFileWriter.h>
 #include <ADCSampler.h>
 #include "config.h"
+#include "http_utils.h"
+
+const char* ssid = "ChinaNet-3199";
+const char* passwd = "12345678";
+
+WiFiClient client;
+
+void connectWifi() {
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, passwd);
+  WiFi.setAutoReconnect(true);
+  WiFi.persistent(true);
+
+  Serial.println("connecting to router... ");
+  //等待wifi连接成功
+  while (!WiFi.isConnected()) {
+      Serial.print(".");
+      delay(1000);
+  }
+  Serial.print("\nWiFi connected, local IP address:");
+  Serial.println(WiFi.localIP());
+}
 
 void record(I2SSampler *input, const char *fname)
 {
@@ -45,10 +68,21 @@ void setup() {
   }
   Serial.printf("SD.cardType = %d \r\n", SD.cardType());
 
-  I2SSampler *input = new ADCSampler(ADC_UNIT_1, ADC1_CHANNEL_7, i2s_adc_config);
-  record(input, "/test.wav");
+  connectWifi();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  if (Serial.available()) {
+    char input = Serial.read();
+    Serial.printf("input: %c", input);
+    switch (input) {
+      case '0': Serial.println("ok");break;
+      case '1': httpUploadFile("/snore.wav", "192.168.1.7", 3005, "/wav/post");
+                break;
+      case '2': I2SSampler *input = new ADCSampler(ADC_UNIT_1, ADC1_CHANNEL_7, i2s_adc_config);
+                record(input, "/test.wav");
+                break;
+    }
+  }
 }

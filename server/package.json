@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@koa/multer": "^3.0.2",
+    "koa-body": "^6.0.1",
     "koa-mount": "^4.0.0",
     "koa-static": "^5.0.0",
-    "koast": "git+https://github.com/zrk1993/koast.git"
+    "koast": "git+https://github.com/zrk1993/koast.git",
+    "multer": "1.4.5-lts.1"
   },
   "devDependencies": {
     "@types/koa": "^2.13.4",

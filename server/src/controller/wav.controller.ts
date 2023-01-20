@@ -5,8 +5,16 @@ import deccoder from '../utils/wav-deccoder';
 import encoder from '../utils/wav-encoder';
 import { floatTo16Bit, int16ToFloat32, average } from '../utils/tool';
 import send from 'koa-send'
+import { koaBody } from 'koa-body'
+import multer from '@koa/multer'
+
+const upload = multer();
 
 @Controller('/wav')
+// @Use((ctx, next) => {
+//   console.log(ctx.request.headers)
+//   next()
+// })
 export default class Wav {
   @Get('/get')
   async hi(@Ctx() ctx: Context, @Query() query: any) {
@@ -22,6 +30,17 @@ export default class Wav {
       });
     })
     return b
+  }
+
+  @Post('/post')
+  @Use(upload.single('file'))
+  async update(@Ctx() ctx: Context) {
+    const file: any = (ctx.request as any).file;
+    let filePath = path.join(__dirname, '../..', 'wav/upload/') + `/${file.originalname}`;
+    fs.writeFile(filePath, file.buffer, function () {
+      console.log(filePath)
+    });
+    return {}
   }
 
   @Get('/raw')
