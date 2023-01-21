@@ -32,7 +32,7 @@ export default class Wav {
     return b
   }
 
-  @Post('/post')
+  @Post('/upload')
   @Use(upload.single('file'))
   async update(@Ctx() ctx: Context) {
     const file: any = (ctx.request as any).file;
@@ -45,7 +45,7 @@ export default class Wav {
 
   @Get('/raw')
   async raw(@Ctx() ctx: Context, @Query() query: any) {
-    await send(ctx, `wav/${query.id}.wav`)
+    await send(ctx, `wav/upload/${query.id}.wav`)
   }
 
   @Get('/raw2')

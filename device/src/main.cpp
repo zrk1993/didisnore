@@ -10,8 +10,6 @@
 const char* ssid = "ChinaNet-3199";
 const char* passwd = "12345678";
 
-WiFiClient client;
-
 void connectWifi() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, passwd);
@@ -28,24 +26,21 @@ void connectWifi() {
   Serial.println(WiFi.localIP());
 }
 
-void record(I2SSampler *input, const char *fname)
-{
-  int16_t *samples = (int16_t *)malloc(sizeof(int16_t) * 1024);
+void record(const char *fname, int duration) {
+  I2SSampler *input = new ADCSampler(ADC_UNIT_1, ADC1_CHANNEL_7, i2s_adc_config);
+  uint8_t *samples = (uint8_t *)malloc(sizeof(uint8_t) * 1024);
   Serial.println("Start recording");
   input->start();
   // open the file on the sdcard
-  File file = SD.open("/test.wav", FILE_WRITE);
-
+  File file = SD.open(fname, FILE_WRITE);
   // create a new wave file writer
   WAVFileWriter *writer = new WAVFileWriter(file, input->sample_rate());
   // keep writing until the user releases the button
-  while (digitalRead(GPIO_NUM_2))
-  {
+  int64_t start = millis();
+  while (millis() < start + duration) {
     int samples_read = input->read(samples, 1024);
-    int64_t start = esp_timer_get_time();
     writer->write(samples, samples_read);
-    int64_t end = esp_timer_get_time();
-    Serial.printf("Wrote %d samples in %lld microseconds", samples_read, end - start);
+    Serial.printf(".");
   }
   // stop the input
   input->stop();
@@ -54,14 +49,14 @@ void record(I2SSampler *input, const char *fname)
   file.close();
   delete writer;
   free(samples);
-  Serial.printf("Finished recording");
+  Serial.printf("\nFinished recording, duration: %d", millis() - start);
 }
 
 
 void setup() {
   Serial.begin(115200);
   Serial.println("start!");
-  delay(3000);
+  delay(1000);
   if (!SD.begin(5)) {
     Serial.println("SD init failed!");
     return;
@@ -69,6 +64,8 @@ void setup() {
   Serial.printf("SD.cardType = %d \r\n", SD.cardType());
 
   connectWifi();
+
+  delay(1000 * 2);
 }
 
 void loop() {
@@ -78,10 +75,15 @@ void loop() {
     Serial.printf("input: %c", input);
     switch (input) {
       case '0': Serial.println("ok");break;
-      case '1': httpUploadFile("/snore.wav", "192.168.1.7", 3005, "/wav/post");
+      case '1': httpUploadFile("/test.wav", "192.168.1.7", 3005, "/wav/upload");
                 break;
-      case '2': I2SSampler *input = new ADCSampler(ADC_UNIT_1, ADC1_CHANNEL_7, i2s_adc_config);
-                record(input, "/test.wav");
+      case 'a': record("/test.wav", 1000 * 2);
+                break;
+      case 'b': record("/test.wav", 1000 * 3);
+                break;
+      case 'c': record("/test.wav", 1000 * 5);
+                break;
+      case 'd': record("/test.wav", 1000 * 10);
                 break;
     }
   }

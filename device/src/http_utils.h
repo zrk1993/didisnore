@@ -79,6 +79,7 @@ String randomChr(int size)
 
 int httpUploadFile(const char *fileName, String host, int port, String path)
 {
+	int64_t start = millis();
 	File fd = SD.open(fileName, FILE_READ);
 	if (!fd) {
 		Serial.print("open file failed\n");
@@ -103,7 +104,7 @@ int httpUploadFile(const char *fileName, String host, int port, String path)
 	header += "\r\n";
 
 	WiFiClient client;
-	Serial.println("start upload ");
+	Serial.println("\nstart upload ");
 	if (!client.connect(host.c_str(), port)) {
 		Serial.print("open file failed\n");
 		return -1;
@@ -142,7 +143,7 @@ int httpUploadFile(const char *fileName, String host, int port, String path)
 	// 	Serial.write(ret);
 	// }
 
-	Serial.println();
+	Serial.printf("\nhttp upload finish, duration %d", millis() - start);
 
 	return 1;
 }

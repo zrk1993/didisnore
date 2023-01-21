@@ -59,7 +59,7 @@ onMounted(() => {
     wavesurfer.playPause();
     wavesurfer.setMute(false);
   })
-  wavesurfer.load("/api/wav/raw?id=test2")
+  wavesurfer.load("/api/wav/raw?id=test")
 })
 </script>
 

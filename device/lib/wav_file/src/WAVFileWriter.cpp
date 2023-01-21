@@ -14,17 +14,17 @@ WAVFileWriter::WAVFileWriter(File fp, int sample_rate)
   m_file_size = sizeof(wav_header_t);
 }
 
-void WAVFileWriter::write(int16_t *samples, int count)
+void WAVFileWriter::write(uint8_t *samples, int count)
 {
   // write the samples and keep track of the file size so far
-  m_fp.write((uint8_t* )samples, count);
+  m_fp.write(samples, count);
   //fwrite(samples, sizeof(int16_t), count, m_fp);
-  m_file_size += sizeof(int16_t) * count;
+  m_file_size += sizeof(uint8_t) * count;
 }
 
 void WAVFileWriter::finish()
 {
-  ESP_LOGI(TAG, "Finishing wav file size: %d", m_file_size);
+  Serial.printf("\nFinishing wav file size: %d", m_file_size);
   // now fill in the header with the correct information and write it again
   m_header.data_bytes = m_file_size - sizeof(wav_header_t);
   m_header.wav_size = m_file_size - 8;
