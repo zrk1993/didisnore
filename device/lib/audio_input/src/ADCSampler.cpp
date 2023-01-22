@@ -21,15 +21,21 @@ void ADCSampler::unConfigureI2S()
     i2s_adc_disable(m_i2sPort);
 }
 
-int ADCSampler::read(uint8_t *samples, int count)
+int ADCSampler::read(int16_t *samples, int count)
 {
     // read from i2s
     size_t bytes_read = 0;
-    i2s_read(m_i2sPort, samples, sizeof(uint8_t) * count, &bytes_read, portMAX_DELAY);
-    int samples_read = bytes_read / sizeof(uint8_t);
+    i2s_read(m_i2sPort, samples, sizeof(int16_t) * count, &bytes_read, portMAX_DELAY);
+    int samples_read = bytes_read / sizeof(int16_t);
     for (int i = 0; i < samples_read; i++)
     {
-        samples[i] = (2048 - (uint8_t(samples[i]) & 0xfff)) * 15;
+        samples[i] = (2048 - (int16_t(samples[i]) & 0xfff)) * 15;
     }
+
+    // uint16_t offset = (int)ADC1_CHANNEL_7 * 0x1000 + 0xFFF; // 4high bits == channel. Data is inverted.
+    // for(uint32_t i=0; i < samples_read; i++){
+    //     samples[i] = offset - samples[i];
+    // }
+
     return samples_read;
 }

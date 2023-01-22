@@ -15,6 +15,6 @@ private:
 public:
   WAVFileWriter(File fp, int sample_rate);
   void start();
-  void write(uint8_t *samples, int count);
+  void write(int16_t *samples, int count);
   void finish();
 };

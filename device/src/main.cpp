@@ -28,7 +28,8 @@ void connectWifi() {
 
 void record(const char *fname, int duration) {
   I2SSampler *input = new ADCSampler(ADC_UNIT_1, ADC1_CHANNEL_7, i2s_adc_config);
-  uint8_t *samples = (uint8_t *)malloc(sizeof(uint8_t) * 1024);
+  int16_t *samples = (int16_t *)malloc(sizeof(int16_t) * 1024);
+  // char* samples = (char*) calloc(1024, sizeof(char));
   Serial.println("Start recording");
   input->start();
   // open the file on the sdcard
@@ -37,11 +38,14 @@ void record(const char *fname, int duration) {
   WAVFileWriter *writer = new WAVFileWriter(file, input->sample_rate());
   // keep writing until the user releases the button
   int64_t start = millis();
+  size_t count = 0;
   while (millis() < start + duration) {
+    count += 1;
     int samples_read = input->read(samples, 1024);
     writer->write(samples, samples_read);
     Serial.printf(".");
   }
+  // Serial.printf("\n %d,  %d", count, count * 1024);
   // stop the input
   input->stop();
   // and finish the writing
