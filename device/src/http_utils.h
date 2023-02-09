@@ -1,10 +1,9 @@
 #include <Arduino.h>
 #include <WiFi.h>
-#include <SD.h>
 #include <HTTPClient.h>
 
-int httpDownloadFile(const char *url, const char *fileName) {
-	File fd = SD.open(fileName, FILE_READ);
+int httpDownloadFile(const char *url, File fd, const char *fileName) {
+	// File fd = SD.open(fileName, FILE_READ);
 	if (!fd) {
 		Serial.printf("Can't open %s !\r\n", fileName);
 		return -1;
@@ -80,7 +79,8 @@ String randomChr(int size)
 int httpUploadFile(const char *fileName, String host, int port, String path)
 {
 	int64_t start = millis();
-	File fd = SD.open(fileName, FILE_READ);
+	File fd = SPIFFS.open(fileName, FILE_READ);
+	// File fd = SD.open(fileName, FILE_READ);
 	if (!fd) {
 		Serial.print("open file failed\n");
 		return -1;

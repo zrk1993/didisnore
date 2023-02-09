@@ -17,7 +17,7 @@ WAVFileWriter::WAVFileWriter(File fp, int sample_rate)
 void WAVFileWriter::write(int16_t *samples, int count)
 {
   // write the samples and keep track of the file size so far
-  m_fp.write(samples, count);
+  m_fp.write((uint8_t*)samples, count);
   //fwrite(samples, sizeof(int16_t), count, m_fp);
   m_file_size += sizeof(int16_t) * count;
 }
