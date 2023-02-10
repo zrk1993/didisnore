@@ -20,8 +20,8 @@ File file;
 const char filename[] = "/recording.wav";
 const int headerSize = 44;
 
-const char* ssid = "helloword";
-const char* passwd = "zxcvbnm8";
+const char* ssid = "CDS";
+const char* passwd = "Chan888999";
 
 void connectWifi() {
   WiFi.mode(WIFI_STA);
@@ -54,11 +54,13 @@ void loop() {
     Serial.printf("input: %c", input);
     switch (input) {
       case '0': Serial.println("ok");break;
-      case '1': httpUploadFile("/recording.wav", "192.168.31.224", 3005, "/wav/upload");
+      case '1': httpUploadFile("/recording.wav", "192.168.200.136", 3005, "/wav/upload");
                 break;
       case 'a': xTaskCreate(i2s_adc, "i2s_adc", 1024 * 2, NULL, 1, NULL);
                 break;
       case 'b': listSPIFFS();
+                break;
+      case  'r': ESP.restart();
                 break;
     }
   }
@@ -214,7 +216,6 @@ void wavHeader(byte* header, int wavSize){
   header[41] = (byte)((wavSize >> 8) & 0xFF);
   header[42] = (byte)((wavSize >> 16) & 0xFF);
   header[43] = (byte)((wavSize >> 24) & 0xFF);
-  
 }
 
 
