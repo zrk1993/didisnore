@@ -30,7 +30,7 @@ async function main() {
       console.log('end')
     });
     client.on('data', (data) => {
-      console.log('.');
+      //console.log('.');
       dataHand(data);
     });
   })

@@ -17,6 +17,7 @@ onMounted(() => {
     container: "#waveform",
     waveColor: "violet",
     progressColor: "purple",
+    normalize: false,
     plugins: [
       timeline.create({
         container: "#wave-timeline"
@@ -57,9 +58,10 @@ onMounted(() => {
   })
   wavesurfer.once("ready", function () {
     wavesurfer.playPause();
+    wavesurfer.setVolume(1);
     wavesurfer.setMute(false);
   })
-  wavesurfer.load("/api/wav/raw?id=1676020665410")
+  wavesurfer.load("/api/wav/raw?id=230210_182438_57")
 })
 </script>
 
