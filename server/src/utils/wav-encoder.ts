@@ -60,7 +60,23 @@ function toAudioData(data) {
   return audioData;
 }
 
-function writeHeader(writer, format, length) {
+export function getHeader(length: number) {
+  var dataView = new DataView(new Uint8Array(44).buffer);
+  var writer = createWriter(dataView);
+  var format = {
+    formatId: 0x0001,
+    floatingPoint: false,
+    numberOfChannels: 1,
+    sampleRate: 16000,
+    bitDepth: 16
+  };
+  writeHeader(writer, format, length - 8);
+  writer.string("data");
+  writer.uint32(length);
+  return Buffer.from(dataView.buffer);
+}
+
+export function writeHeader(writer, format, length) {
   var bytes = format.bitDepth >> 3;
 
   writer.string("RIFF");
@@ -100,7 +116,7 @@ function writeData(writer, format, length, audioData, opts) {
   }
 }
 
-function createWriter(dataView) {
+export function createWriter(dataView) {
   var pos = 0;
 
   return {
