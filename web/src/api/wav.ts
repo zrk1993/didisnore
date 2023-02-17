@@ -1,9 +1,9 @@
 import { request } from "@/utils/service"
 
-/** 获取登录验证码 */
-export function getWavRaw() {
+export function getWavPage(data: object) {
   return request({
-    url: "wav/get",
-    method: "get"
+    url: "wav/page",
+    method: "get",
+    params: data
   })
 }

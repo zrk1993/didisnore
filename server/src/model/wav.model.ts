@@ -1,17 +1,20 @@
 import BaseModel from './base.model';
 
-const tableName = 't_wav';
+const tableName = 'wav';
 
 interface ITableStructure {
-  admin_id?: number,
-  uname?: string,
+  id?: number,
+  wav_name: string,
+  create_time: Date,
+  directory: string,
+  duration: number,
   [propname: string]: any
 };
 
 class WavModel extends BaseModel<ITableStructure> {
 
   constructor() {
-    super({ tableName });
+    super({ tableName, primaryKey: 'id' });
   }
 
   async getByName(uname: string): Promise<ITableStructure> {

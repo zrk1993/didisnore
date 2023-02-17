@@ -13,5 +13,4 @@ upload/
 *.njsproj
 *.sln
 
-
-src/**/*.js
+dist

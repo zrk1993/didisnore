@@ -69,28 +69,11 @@ export const constantRoutes: RouteRecordRaw[] = [
     redirect: "/wav",
     children: [
       {
-        path: "test",
-        component: () => import("@/views/wav/test.vue"),
-        name: "wav-test",
+        path: "page",
+        component: () => import("@/views/wav/page.vue"),
+        name: "wav-page",
         meta: {
-          title: "测试",
-          svgIcon: "dashboard",
-          affix: true
-        }
-      }
-    ]
-  },
-  {
-    path: "/record",
-    component: Layout,
-    redirect: "/record",
-    children: [
-      {
-        path: "record",
-        component: () => import("@/views/wav/record.vue"),
-        name: "wav-record",
-        meta: {
-          title: "测试",
+          title: "列表",
           svgIcon: "dashboard",
           affix: true
         }
