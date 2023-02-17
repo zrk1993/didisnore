@@ -42,7 +42,7 @@ onMounted(() => {
   })
   const route = useRoute()
 
-  wavesurfer.load("/api/wav/raw?id=" + route.params.id)
+  wavesurfer.load(import.meta.env.VITE_BASE_API + "/wav/raw?id=" + route.params.id)
 })
 </script>
 
