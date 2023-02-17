@@ -7,11 +7,11 @@ let lastTime = Date.now();
 let cahce = []
 
 export default async (data: Buffer) => {
-  if (cahce.length > 1000) {
+  if (cahce.length > 235) {
     const d = Buffer.concat(cahce)
     const h = getHeader(d.length);
     const data = Buffer.concat([h, d]);
-    fs.open(`wav/upload/${dayjs(lastTime).format("YYMMDD_HHmmss_") + Math.ceil(d.length / 32000)}.wav`, 'w', (err, fd) => {
+    fs.open(`wav/upload/${dayjs(lastTime).format("YYMMDD_HHmmss_") + Math.floor(d.length / 32000)}.wav`, 'w', (err, fd) => {
       if (err) {
         console.error(err)
       }

@@ -10,14 +10,16 @@
     "koa-mount": "^4.0.0",
     "koa-static": "^5.0.0",
     "koast": "git+https://github.com/zrk1993/koast.git",
-    "multer": "1.4.5-lts.1"
+    "multer": "1.4.5-lts.1",
+    "soul-orm": "^1.2.0"
   },
   "devDependencies": {
     "@types/koa": "^2.13.4",
-    "ts-node": "^10.4.0",
+    "ts-node": "^10.9.1",
     "typescript": "^4.5.2"
   },
   "scripts": {
+    "dev": "ts-node src/main.ts",
     "build": "tsc -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

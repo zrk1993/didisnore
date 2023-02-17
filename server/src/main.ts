@@ -6,7 +6,10 @@ import router from './router';
 
 import dataHand from './tcp-data-hand'
 
-const port = 3005;
+import config from './config'
+
+const port = config.port;
+const tcp_port = config.tcp_port
 
 async function main() {
   const app = new Koast();
@@ -34,7 +37,7 @@ async function main() {
       dataHand(data);
     });
   })
-  tcp_server.listen(3006, () => {
+  tcp_server.listen(tcp_port, () => {
     console.log('TCP服务器已启动');
   })
 }

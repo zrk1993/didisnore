@@ -12,3 +12,6 @@ upload/
 *.ntvs*
 *.njsproj
 *.sln
+
+
+src/**/*.js
