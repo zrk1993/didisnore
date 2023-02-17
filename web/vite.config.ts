@@ -43,6 +43,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
         }
       }
     },
+    root: "../server/public/web",
     build: {
       outDir: '../server/public/web',
       /** 消除打包大小超过 500kb 警告 */
