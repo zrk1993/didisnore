@@ -35,8 +35,7 @@
     "screenfull": "^6.0.2",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
-    "wavesurfer.js": "^6.4.0",
-    "xe-utils": "^3.5.7"
+    "wavesurfer.js": "^6.4.0"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",

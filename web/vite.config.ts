@@ -74,7 +74,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
             elementPlus: ['element-plus'],
             wavesurfer: ["wavesurfer.js"],
             lodash: ["lodash-es"],
-            vender: ["axios", "dayjs", "js-cookie", "xe-utils", "screenfull", "path-to-regexp", "path-browserify", "nprogress"],
+            vender: ["axios", "dayjs", "js-cookie", "screenfull", "path-to-regexp", "path-browserify", "nprogress"],
           },
         },
       },
