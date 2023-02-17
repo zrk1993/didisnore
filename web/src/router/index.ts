@@ -77,6 +77,17 @@ export const constantRoutes: RouteRecordRaw[] = [
           svgIcon: "dashboard",
           affix: true
         }
+      },
+      {
+        path: "detail/:id",
+        component: () => import("@/views/wav/detail.vue"),
+        name: "wav-detail",
+        meta: {
+          hidden: true,
+          title: "信息",
+          svgIcon: "dashboard",
+          affix: true
+        }
       }
     ]
   }

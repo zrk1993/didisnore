@@ -16,11 +16,11 @@ int i2s_read_buff_index = 1;
 char *i2s_read_buff1 = (char *)calloc(I2S_READ_LEN, sizeof(char));
 char *i2s_read_buff2 = (char *)calloc(I2S_READ_LEN, sizeof(char));
 
-const char *ssid = "CDS";
-const char *passwd = "Chan888999";
+const char *ssid = "helloword";
+const char *passwd = "zxcvbnm8";
 
-const char *tcp_host = "192.168.200.136";
-const int tcp_port = 3006;
+const char *tcp_host = "150.158.27.240";
+const int tcp_port = 8106;
 
 void setup()
 {

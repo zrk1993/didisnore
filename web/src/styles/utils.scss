@@ -1,0 +1,459 @@
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.ellipsis-1 {
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.ellipsis-2 {
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.ellipsis-3 {
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.ellipsis-4 {
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+.border-b {
+  border-bottom: 1px solid #E8EBF1;
+}
+.border-b-f5 {
+  border-bottom: 1px solid #F5F5F5;
+}
+.border-t-f5 {
+  border-top: 1px solid #F5F5F5;
+}
+.border-r-f5 {
+  border-right: 1px solid #F5F5F5;
+}
+.border-l-f5 {
+  border-left: 1px solid #F5F5F5;
+}
+.border-r-b5 {
+  border-right: 1px solid #B5B5B5;
+}
+.border-b97 {
+  border-bottom: 1px solid rgba(151, 151, 151, 0.1);
+}
+.border-r {
+  border-right: 1px solid #E8EBF1;
+}
+.border-l {
+  border-left: 1px solid #E8EBF1;
+}
+.nt-border {
+  border-top: none !important;
+}
+.nb-border {
+  border-bottom: none !important;
+}
+.nl-border {
+  border-left: none !important;
+}
+.nr-border {
+  border-right: none !important;
+}
+.avatar-bd {
+  border: 1px solid #E9EBF0;
+}
+.h100p {
+  height: 100%;
+}
+.h95p {
+  height: 95%;
+}
+.h5p {
+  height: 5%;
+}
+.w100p {
+  width: 100%;
+}
+.w50p {
+  width: 50%;
+}
+.l0 {
+  left: 0;
+}
+.t0 {
+  top: 0;
+}
+.full {
+  left: 0;
+  top: 0;
+  @extend .h100p;
+  @extend .w100p;
+}
+.block {
+  display: block;
+}
+.none {
+  display: none;
+}
+.in-block {
+  display: inline-block;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.text-decoration-line-through {
+  text-decoration: line-through;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.text-decoration {
+  text-decoration: line-through;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
+.overflow-y-auto {
+  overflow-y: auto;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-y-auto {
+  overflow-y: auto;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.no-cursor-pointer {
+  cursor: text;
+}
+.vertical-align-m {
+  vertical-align: middle;
+}
+
+.font-weight-normal {
+  font-weight: normal;
+}
+.font-weight-bold {
+  font-weight: bold;
+}
+.font-weight-900 {
+  font-weight: 900;
+}
+.font-weight-800 {
+  font-weight: 800;
+}
+.font-weight-700 {
+  font-weight: 700;
+}
+.font-weight-600 {
+  font-weight: 600;
+}
+.font-weight-500 {
+  font-weight: 500;
+}
+.font-weight-400 {
+  font-weight: 400;
+}
+.font-weight-300 {
+  font-weight: 300;
+}
+.fa-cds-lt {
+  font-family: CDSHT-light;
+}
+.fa-cds-rg {
+  font-family: CDSHT-Regular;
+}
+
+.m-auto {
+  margin: 0 auto;
+}
+
+@each $space in 2,3,4,5,6,8,10,12,14,15,16,18,20,22,24,25,30,35,40,45,48,50,55,60,65,70,75,80,85,90,95,100 {
+  .ml#{$space} {
+    margin-left: #{$space}px;
+  }
+  .mr#{$space} {
+    margin-right: #{$space}px;
+  }
+  .mt#{$space} {
+    margin-top: #{$space}px;
+  }
+  .mb#{$space} {
+    margin-bottom: #{$space}px;
+  }
+  .m#{$space} {
+    margin: #{$space}px;
+  }
+  .mx#{$space} {
+    margin-left: #{$space}px;
+    margin-right: #{$space}px;
+  }
+  .my#{$space} {
+    margin-top: #{$space}px;
+    margin-bottom: #{$space}px;;
+  }
+  .pl#{$space} {
+    padding-left: #{$space}px;
+  }
+  .pr#{$space} {
+    padding-right: #{$space}px;
+  }
+  .pt#{$space} {
+    padding-top: #{$space}px;
+  }
+  .pb#{$space} {
+    padding-bottom: #{$space}px;
+  }
+  .p#{$space} {
+    padding: #{$space}px;
+  }
+  .px#{$space} {
+    padding-left: #{$space}px;
+    padding-right: #{$space}px;
+  }
+  .py#{$space} {
+    padding-top: #{$space}px;
+    padding-bottom: #{$space}px;
+  }
+}
+
+.bg-f {
+  background-color: #fff;
+}
+
+.bg-f5 {
+  background-color: #f5f5f5;
+}
+
+.c-empty {
+  color: #FFC6B7;
+}
+
+.cm {
+  color: #E64A4F;
+}
+.cfff {
+  color: #fff;
+}
+.cff5 {
+  color: rgba(255, 255, 255, 0.5);
+}
+.cff6 {
+  color: rgba(255, 255, 255, 0.6);
+}
+.cff7 {
+  color: rgba(255, 255, 255, 0.7);
+}
+.c606266 {
+  color: #606266;
+}
+.c6DBAE2 {
+  color: #6DBAE2;
+}
+.cFF6C47 {
+  color: #FF6C47;
+}
+.cFF4D00 {
+  color: #FF4D00;
+}
+.cFF7752 {
+  color: #E64A4F;
+}
+.cFB5858 {
+  color: #FB5858;
+}
+.cFF4141 {
+  color: #FF4141;
+}
+.c4FD1BB {
+  color: #4FD1BB;
+}
+.c68 {
+  color: #686868;
+}
+.c8c {
+  color: #8C8C8C;
+}
+.ccc {
+  color: #ccc;
+}
+.c999 {
+  color: #999;
+}
+.c666 {
+  color: #666;
+}
+.c6c6c6c {
+  color: #6c6c6c;
+}
+.c333 {
+  color: #333;
+}
+.c222 {
+  color: #222;
+}
+.c000 {
+  color: #000;
+}
+.cbbb {
+  color: #bbb;
+}
+.f6a {
+  color: #ff6a6a;
+}
+.fs32 {
+  font-size: 32px;
+}
+.fs22 {
+  font-size: 22px;
+}
+.fs20 {
+  font-size: 20px;
+}
+.fs19 {
+  font-size: 19px;
+}
+.fs18 {
+  font-size: 18px;
+}
+.fs17 {
+  font-size: 17px;
+}
+.fs16 {
+  font-size: 16px;
+}
+.fs15 {
+  font-size: 15px;
+}
+.fs14 {
+  font-size: 14px;
+}
+.fs13 {
+  font-size: 13px;
+}
+.fs12 {
+  font-size: 12px;
+}
+.fs11 {
+  font-size: 11px;
+}
+.fs10 {
+  font-size: 10px;
+}
+.fs22 {
+  font-size: 22px;
+}
+.fs24 {
+  font-size: 24px;
+}
+.fs26 {
+  font-size: 26px;
+}
+.fs28 {
+  font-size: 28px;
+}
+.fs30 {
+  font-size: 30px;
+}
+.fs34 {
+  font-size: 34px;
+}
+.fs36 {
+  font-size: 36px;
+}
+
+.z1 {
+  z-index: 1;
+}
+.z2 {
+  z-index: 2;
+}
+.z3 {
+  z-index: 3;
+}
+.z4 {
+  z-index: 4;
+}
+
+.br4 {
+  border-radius: 4px;
+}
+
+.br5 {
+  border-radius: 5px;
+}
+
+.br12 {
+  border-radius: 12px;
+}
+
+.br50 {
+  border-radius: 50%;
+}
+
+.br100 {
+  border-radius: 100%;
+}
+
+.opacity0 {
+  opacity: 0;
+}
+
+.opacity6 {
+  opacity: 0.6;
+}
+
+.opacity7 {
+  opacity: 0.7;
+}
+
+.clearfix {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}
+
+.lh100p {
+  line-height: 100%;
+}
+

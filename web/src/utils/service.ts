@@ -88,7 +88,7 @@ function createService() {
 
 /** 创建请求方法 */
 function createRequestFunction(service: AxiosInstance) {
-  return function (config: AxiosRequestConfig) {
+  return function (config: AxiosRequestConfig): Promise<any> {
     const configDefault = {
       headers: {
         // 携带 Token
